@@ -16,12 +16,12 @@ private CorredorService corredorService;
     @GetMapping
     public List<Corredor> obtenerCorredores(){
         return corredorService.obtenerTodos();
-
     }
     @GetMapping("/{id}")
     public Corredor buscarPorId(@PathVariable long id){
         return corredorService.buscarPorId(id);
     }
+
     @PostMapping()
     public void agregarCorredor(@RequestBody Corredor corredor){
         corredorService.agregarCorredor(corredor);
