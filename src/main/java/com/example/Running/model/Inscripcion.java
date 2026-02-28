@@ -13,13 +13,18 @@ import java.time.LocalDateTime;
 public class Inscripcion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private long id;
+   private Long id;
     private LocalDateTime fechaInscripcion;
     @ManyToOne
    private  Corredor corredor;
     @ManyToOne
    private  Carrera carrera;
-   private int dorsal;
+   private Integer dorsal;
+
+
+    public Inscripcion() {
+
+    }
 
 
 
