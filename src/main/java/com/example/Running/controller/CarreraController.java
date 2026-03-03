@@ -23,7 +23,7 @@ public class CarreraController {
         return carreraService.obtenerCarreraPorId(id);
     }
     @PostMapping
-    public void agregarCarrera(@RequestBody Carrera carrera){
+    public void agregarCarrera(@Valid @RequestBody Carrera carrera){
         carreraService.guardarCarrera(carrera);
 
     }
