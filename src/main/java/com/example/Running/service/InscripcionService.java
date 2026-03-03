@@ -41,6 +41,9 @@ public class InscripcionService {
         if (inscripcionRepository.existsByCorredorAndCarrera(corredor,carrera)) {
             throw new RuntimeException("El corredor ya esta inscrito en la carrera");
         }
+        if(inscripcionRepository.existsByCorredorAndCarreraEvento(corredor, carrera.getEvento())){
+            throw new RuntimeException("El corredor ya esta inscrito en este evento");
+        }
 
         long totalInscritos = inscripcionRepository.countByCarrera(carrera);
         inscripcion.setCarrera(carrera);

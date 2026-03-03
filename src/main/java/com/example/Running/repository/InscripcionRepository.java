@@ -10,8 +10,13 @@ import java.util.List;
 
 public interface InscripcionRepository extends JpaRepository<Inscripcion, Long> {
     long countByCarrera(Carrera carrera);
-    boolean existsByCorredorAndCarrera(Corredor corredor, Carrera carrera);
+
+    boolean existsByCorredorAndCarrera(Corredor corredor, Carrera carrera);//asi no puede inscribirse dos veces en la misma carrera
+
     List<Inscripcion> findByCarreraEvento(Evento evento);
+
+    //añado metodo extra para que un corredor no pueda añadirse a dos carreras del mismo evento
+    boolean existsByCorredorAndCarreraEvento(Corredor corredor, Evento evento);
 }
 
 
