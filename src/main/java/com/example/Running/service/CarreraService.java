@@ -1,6 +1,7 @@
 package com.example.Running.service;
 
 import com.example.Running.model.Carrera;
+import com.example.Running.model.Evento;
 import com.example.Running.repository.CarreraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,12 @@ public class CarreraService {
     public void guardarCarrera(Carrera carrera) {
         carreraRepository.save(carrera);
     }
+    public List<Carrera> obtenerCarrerasPorEvento(Long eventoId) {
+        Evento evento = new Evento();
+        evento.setId(eventoId);
+        return carreraRepository.findByEvento(evento);
+    }
+
     public void eliminarCarrera(long id) {
         carreraRepository.deleteById(id);
     }
