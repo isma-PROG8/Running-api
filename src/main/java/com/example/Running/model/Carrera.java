@@ -1,6 +1,7 @@
 package com.example.Running.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -22,6 +23,7 @@ public class Carrera {
     @NotNull
     private TipoCarrera modalidad;
     @ManyToOne
+    @JsonBackReference
     private Evento evento;
 
     public Carrera() {

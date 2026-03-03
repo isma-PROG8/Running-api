@@ -1,8 +1,10 @@
 package com.example.Running.controller;
 
 import com.example.Running.model.Evento;
+import com.example.Running.model.Inscripcion;
 import com.example.Running.service.EventoService;
 
+import com.example.Running.service.InscripcionService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,8 @@ import java.util.List;
 public class EventoController {
     @Autowired
     private EventoService eventoService;
+    @Autowired
+    private InscripcionService inscripcionService;
     @GetMapping
     public List<Evento> obtenerEventos()
     {
@@ -27,6 +31,10 @@ public class EventoController {
     @PostMapping()
     public Evento  guardarEvento(@Valid @RequestBody Evento evento){
        return  eventoService.guardarEvento(evento);
+    }
+    @GetMapping("/{id}/inscripciones")
+    public List<Inscripcion> obtenerInscripcionesPorEvento(@PathVariable Long id) {
+        return inscripcionService.obtenerInscripcionesPorEvento(id);
     }
     @DeleteMapping("/{id}")
     public void eliminarEventoPorId(@PathVariable Long id){

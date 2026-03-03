@@ -2,6 +2,7 @@ package com.example.Running.service;
 
 import com.example.Running.model.Carrera;
 import com.example.Running.model.Corredor;
+import com.example.Running.model.Evento;
 import com.example.Running.model.Inscripcion;
 import com.example.Running.repository.CarreraRepository;
 import com.example.Running.repository.CorredorRepository;
@@ -49,6 +50,12 @@ public class InscripcionService {
         carrera.setPlazasOcupadas(carrera.getPlazasOcupadas()+1);
         carreraRepository.save(carrera);
         inscripcionRepository.save(inscripcion);
+
+    }
+    public List<Inscripcion> obtenerInscripcionesPorEvento(Long eventoId) {
+        Evento evento=new Evento();
+        evento.setId(eventoId);
+        return inscripcionRepository.findByCarreraEvento(evento);
 
     }
     public void eliminarInscripcion(long id) {

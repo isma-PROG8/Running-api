@@ -2,6 +2,7 @@ package com.example.Running.model;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -23,6 +24,7 @@ public class Evento {
     private String ciudad;
     private Boolean activo;
     @OneToMany(mappedBy = "evento")
+    @JsonManagedReference
     private List<Carrera> carreras;
 
     public Evento() {
