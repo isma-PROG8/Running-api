@@ -3,6 +3,7 @@ package com.example.Running.controller;
 
 import com.example.Running.model.Corredor;
 import com.example.Running.service.CorredorService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +24,7 @@ private CorredorService corredorService;
     }
 
     @PostMapping()
-    public void agregarCorredor(@RequestBody Corredor corredor){
+    public void agregarCorredor(@Valid @RequestBody Corredor corredor){
         corredorService.agregarCorredor(corredor);
     }
     @DeleteMapping("/{id}")

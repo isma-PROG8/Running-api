@@ -1,4 +1,6 @@
 package com.example.Running.model;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -11,9 +13,14 @@ public class Corredor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank
     private String nombre;
+    @NotBlank
     private String dni;
+    @NotBlank
     private String telefono;
+    @NotBlank
+    @Email
     private String correo;
     public Corredor() {
 

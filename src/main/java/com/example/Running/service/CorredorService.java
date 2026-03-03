@@ -15,7 +15,7 @@ public List<Corredor> obtenerTodos(){
 	return corredorRepository.findAll();
 }
 public  Corredor buscarPorId(Long id){
-return corredorRepository.findById(id).get();
+return corredorRepository.findById(id).orElseThrow(()-> new RuntimeException("Corredor no encontrado con id "+ id));
 }
 public void agregarCorredor(Corredor corredor){
     corredorRepository.save(corredor);

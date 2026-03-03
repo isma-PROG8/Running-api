@@ -15,7 +15,7 @@ public class CarreraService {
         return carreraRepository.findAll();
     }
     public Carrera obtenerCarreraPorId(Long id) {
-        return carreraRepository.findById(id).get();
+        return carreraRepository.findById(id).orElseThrow(()-> new RuntimeException("No existe la carrera con id "+id));
 
     }
     public void guardarCarrera(Carrera carrera) {

@@ -22,11 +22,11 @@ public class InscripcionService {
     }
 
     public Inscripcion obtenerInscripcionPorId(Long id) {
-        return inscripcionRepository.findById(id).get();
+        return inscripcionRepository.findById(id).orElseThrow(()-> new RuntimeException("No existe la inscripcion con id "+id));
     }
 
     public void crearInscripcion(Inscripcion inscripcion) {
-        Carrera carrera = carreraRepository.findById(inscripcion.getCarrera().getId()).get();
+        Carrera carrera = carreraRepository.findById(inscripcion.getCarrera().getId()).orElseThrow(()->new RuntimeException("No existe la carrera con id" +inscripcion.getCarrera().getId() ));
         long totalInscritos = inscripcionRepository.countByCarrera(carrera);
         inscripcion.setCarrera(carrera);
         inscripcion.setDorsal((int) totalInscritos + 1);

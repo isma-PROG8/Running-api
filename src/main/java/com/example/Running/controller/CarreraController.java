@@ -3,6 +3,7 @@ package com.example.Running.controller;
 
 import com.example.Running.model.Carrera;
 import com.example.Running.service.CarreraService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
