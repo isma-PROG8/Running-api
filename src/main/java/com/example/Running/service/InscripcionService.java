@@ -31,9 +31,11 @@ public class InscripcionService {
     }
 
     public void crearInscripcion(Inscripcion inscripcion) {
-        Carrera carrera = carreraRepository.findById(inscripcion.getCarrera().getId()).orElseThrow(()->new RuntimeException("No existe la carrera con id" +inscripcion.getCarrera().getId() ));
-        Corredor corredor = corredorRepository.findById(inscripcion.getCorredor().getId())
-                .orElseThrow(() -> new RuntimeException("No existe el corredor con id " + inscripcion.getCorredor().getId()));
+        Carrera carrera = carreraRepository.findById(inscripcion.getCarrera().getId())
+                .orElseThrow(()->new RuntimeException("No existe la carrera con id" + inscripcion.getCarrera().getId()));
+
+
+        Corredor corredor = corredorRepository.save(inscripcion.getCorredor());
 
         if(carrera.getPlazasOcupadas()>=carrera.getPlazasMax()){
             throw new RuntimeException("No quedan plazas disponibles");
@@ -46,6 +48,7 @@ public class InscripcionService {
         }
 
         long totalInscritos = inscripcionRepository.countByCarrera(carrera);
+        inscripcion.setCorredor(corredor);
         inscripcion.setCarrera(carrera);
         inscripcion.setDorsal((int) totalInscritos + 1);
         inscripcion.setFechaInscripcion(LocalDateTime.now());
@@ -53,7 +56,6 @@ public class InscripcionService {
         carrera.setPlazasOcupadas(carrera.getPlazasOcupadas()+1);
         carreraRepository.save(carrera);
         inscripcionRepository.save(inscripcion);
-
     }
     public List<Inscripcion> obtenerInscripcionesPorEvento(Long eventoId) {
         Evento evento=new Evento();
